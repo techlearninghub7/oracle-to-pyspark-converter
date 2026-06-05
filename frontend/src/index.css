@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-base: #0a0b0e;
+  --bg-surface: #0f1117;
+  --bg-elevated: #161820;
+  --bg-border: #1e2130;
+  --accent-primary: #f97316;
+  --accent-glow: rgba(249, 115, 22, 0.15);
+  --text-primary: #e8eaf0;
+  --text-secondary: #8b8fa8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  overflow: hidden;
+}
+
+#root {
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-surface);
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2d3e;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3a3d52;
+}
+
+/* Monaco editor override */
+.monaco-editor .margin {
+  background: #0f1117 !important;
+}
+.monaco-editor-background {
+  background: #0f1117 !important;
+}
+
+/* Token streaming animation */
+@keyframes tokenAppear {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.token-stream span:last-child {
+  animation: tokenAppear 0.1s ease-out;
+}
+
+/* Glow effect for active elements */
+.glow-orange {
+  box-shadow: 0 0 0 1px rgba(249, 115, 22, 0.4), 0 0 20px rgba(249, 115, 22, 0.1);
+}
+
+/* Pulse dot for streaming */
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+.pulse-dot {
+  animation: pulseDot 1s ease-in-out infinite;
+}
+
+/* Syntax badge colors */
+.badge-low { background: rgba(16, 185, 129, 0.12); color: #10b981; border: 1px solid rgba(16,185,129,0.2); }
+.badge-medium { background: rgba(245, 158, 11, 0.12); color: #f59e0b; border: 1px solid rgba(245,158,11,0.2); }
+.badge-high { background: rgba(239, 68, 68, 0.12); color: #ef4444; border: 1px solid rgba(239,68,68,0.2); }
+.badge-oracle { background: rgba(192, 57, 43, 0.12); color: #e07060; border: 1px solid rgba(192,57,43,0.2); }
+.badge-spark { background: rgba(226, 90, 28, 0.12); color: #f97316; border: 1px solid rgba(249,115,22,0.2); }
+
+/* Custom select styling override */
+[data-radix-select-viewport] {
+  background: #161820;
+  border: 1px solid #1e2130;
+}
+
+/* Noise texture overlay */
+.noise::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+/* Focus ring */
+.focus-ring:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+/* Animated gradient border */
+@keyframes borderRotate {
+  from { background-position: 0% 50%; }
+  to { background-position: 100% 50%; }
+}
+
+.gradient-border {
+  background: linear-gradient(90deg, #f97316, #7c3aed, #f97316);
+  background-size: 200% 200%;
+  animation: borderRotate 3s ease infinite;
+  padding: 1px;
+  border-radius: 8px;
+}
